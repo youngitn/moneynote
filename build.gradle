@@ -16,18 +16,24 @@ repositories {
 	maven { url 'https://repo.spring.io/milestone' }
 }
 
-configurations {
-        classpath {
-            exclude group: 'ch.qos.logback'
+
+dependencies {
+	 [
+        "org.springframework:spring-context",
+        "org.springframework.boot:spring-boot-starter-web",
+        "org.springframework.boot:spring-boot-starter-data-mongodb",
+        'org.springframework.boot:spring-boot-starter-log4j2',
+        'org.springframework.boot:spring-boot-starter-aop',
+        'org.springframework.boot:spring-boot-starter-tomcat',
+    ].each { dep ->
+        compile(dep) {
+            exclude module: "spring-boot-starter-logging"
+            exclude module: "logback-classic"
+            exclude module: "ch.qos.logback"
         }
     }
-dependencies {
-	implementation ('org.springframework.boot:spring-boot-starter-web') {
-		exclude module:'spring-boot-starter-logging'
-	}
 	
-	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
 }

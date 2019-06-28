@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 	static final Logger logger = LoggerFactory.getLogger(HelloController.class.getName()); // ¨ú±oLogger
 
-	@GetMapping("/hello") 
+	@GetMapping("/hello")
 	public String hello() {
-		logger.info("start");
+		String s = "hello moneynote";
+		System.out.println(s);
 
-		logger.info("end");
-		return "hello moneynote";
+		return s;
 	}
 
 }
